@@ -2,7 +2,7 @@ import { addWrapper, capitalizePrint } from './functions'
 import Print from './print'
 
 export default {
-  print: (params, printFrame) => {
+  print: function(params, printFrame) {
     // Check if we received proper data
     if (typeof params.printable !== 'object') {
       throw new Error('Invalid javascript data object (JSON).')

@@ -2,7 +2,7 @@ import Browser from './browser'
 import Modal from './modal'
 
 const Print = {
-  send: (params, printFrame) => {
+  send: function(params, printFrame){
     // Append iframe element to document body
     document.getElementsByTagName('body')[0].appendChild(printFrame)
 
@@ -14,7 +14,7 @@ const Print = {
       finishPrintPdfIe(iframeElement)
     } else {
       // Wait for iframe to load all content
-      printFrame.onload = () => {
+      printFrame.onload = function() {
         if (params.type === 'pdf') {
           finishPrint(iframeElement, params)
         } else {
@@ -61,14 +61,14 @@ function finishPrint (iframeElement, params) {
 function finishPrintPdfIe (iframeElement) {
   // Wait until pdf is ready to print
   if (typeof iframeElement.print === 'undefined') {
-    setTimeout(() => {
+    setTimeout(function(){
       finishPrintPdfIe()
     }, 1000)
   } else {
     Print.send()
 
     // Remove embed (just because it isn't 100% hidden when using h/w = 0)
-    setTimeout(() => {
+    setTimeout(function(){
       iframeElement.parentNode.removeChild(iframeElement)
     }, 2000)
   }
@@ -76,7 +76,7 @@ function finishPrintPdfIe (iframeElement) {
 
 function loadImageAndFinishPrint (img, iframeElement, params) {
   if (typeof img.naturalWidth === 'undefined' || img.naturalWidth === 0) {
-    setTimeout(() => {
+    setTimeout(function(){
       loadImageAndFinishPrint(img, iframeElement, params)
     }, 500)
   } else {

@@ -2,7 +2,7 @@ import { addHeader } from './functions'
 import Print from './print'
 
 export default {
-  print: (params, printFrame) => {
+  print: function(params, printFrame){
     // Create the image element
     let img = document.createElement('img')
 
@@ -10,7 +10,7 @@ export default {
     img.src = params.printable
 
     // Load image
-    img.onload = () => {
+    img.onload = function (){
       img.setAttribute('style', 'width:100%;')
       img.setAttribute('id', 'printableImage')
 

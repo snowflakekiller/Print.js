@@ -2,7 +2,7 @@ import { collectStyles, loopNodesCollectStyles, addWrapper, addHeader } from './
 import Print from './print'
 
 export default {
-  print: (params, printFrame) => {
+  print: : function (params, printFrame) {
     // Get HTML printable element
     let printElement = document.getElementById(params.printable)
 
