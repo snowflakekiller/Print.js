@@ -4,7 +4,7 @@ import Print from './print'
 export default {
   print: function(params, printFrame){
     // Create the image element
-    let img = document.createElement('img')
+    var img = document.createElement('img')
 
     // Set image src with image file url
     img.src = params.printable
@@ -15,7 +15,7 @@ export default {
       img.setAttribute('id', 'printableImage')
 
       // Create wrapper
-      let printableElement = document.createElement('div')
+      var printableElement = document.createElement('div')
       printableElement.setAttribute('style', 'width:100%')
       printableElement.appendChild(img)
 

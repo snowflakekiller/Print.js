@@ -6,14 +6,14 @@ export default {
     // If showing feedback to user, pre load pdf files (hacky)
     // Since we will be using promises, we can't use this feature in IE
     if (params.showModal && !Browser.isIE()) {
-      let pdfObject = document.createElement('img')
+      var pdfObject = document.createElement('img')
       pdfObject.src = params.printable
 
-      let pdf = new Promise(function(resolve, reject){
-        let loadPDF = setInterval(checkPDFload, 100)
+      var pdf = new Promise(function(resolve, reject){
+        var loadPDF = setInterval(checkPDFload, 100)
 
         function checkPDFload () {
-          if (pdfObject.complete) {
+          if (pdfObject.compvare) {
             window.clearInterval(loadPDF)
             resolve('PrintJS: PDF loaded.')
           }

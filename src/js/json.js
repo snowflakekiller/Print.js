@@ -14,7 +14,7 @@ export default {
     }
 
     // Variable to hold html string
-    let htmlData = ''
+    var htmlData = ''
 
     // Check print has header
     if (params.header) {
@@ -33,27 +33,27 @@ export default {
 }
 
 function jsonToHTML (params) {
-  let data = params.printable
-  let properties = params.properties
+  var data = params.printable
+  var properties = params.properties
 
-  let htmlData = '<div style="display:flex; flex-direction: column;">'
+  var htmlData = '<div style="display:flex; flex-direction: column;">'
 
   // Header
   htmlData += '<div style="flex:1 1 auto; display:flex;">'
 
-  for (let a = 0; a < properties.length; a++) {
+  for (var a = 0; a < properties.length; a++) {
     htmlData += '<div style="flex:1; padding:5px;">' + capitalizePrint(properties[a]['displayName'] || properties[a]) + '</div>'
   }
 
   htmlData += '</div>'
 
   // Create html data
-  for (let i = 0; i < data.length; i++) {
+  for (var i = 0; i < data.length; i++) {
     htmlData += '<div style="flex:1 1 auto; display:flex;'
     htmlData += params.border ? 'border:1px solid lightgray;' : ''
     htmlData += '">'
 
-    for (let n = 0; n < properties.length; n++) {
+    for (var n = 0; n < properties.length; n++) {
       htmlData += '<div style="flex:1; padding:5px;">' + data[i][properties[n]['field'] || properties[n]] + '</div>'
     }
 

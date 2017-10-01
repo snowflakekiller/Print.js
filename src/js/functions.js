@@ -1,5 +1,5 @@
 export function addWrapper (htmlData, params) {
-  let bodyStyle = 'font-family:' + params.font + ' !important; font-size: ' + params.font_size + ' !important; width:100%;'
+  var bodyStyle = 'font-family:' + params.font + ' !important; font-size: ' + params.font_size + ' !important; width:100%;'
   return '<div style="' + bodyStyle + '">' + htmlData + '</div>'
 }
 
@@ -8,21 +8,21 @@ export function capitalizePrint (string) {
 }
 
 export function collectStyles (element, params) {
-  let win = document.defaultView || window
+  var win = document.defaultView || window
 
-  let style = []
+  var style = []
 
   // String variable to hold styling for each element
-  let elementStyle = ''
+  var elementStyle = ''
 
   if (win.getComputedStyle) { // modern browsers
     style = win.getComputedStyle(element, '')
 
     // Styles including
-    let targetStyles = ['border', 'float', 'box', 'break', 'text-decoration']
+    var targetStyles = ['border', 'float', 'box', 'break', 'text-decoration']
 
     // Exact match
-    let targetStyle = ['clear', 'display', 'width', 'min-width', 'height', 'min-height', 'max-height']
+    var targetStyle = ['clear', 'display', 'width', 'min-width', 'height', 'min-height', 'max-height']
 
     // Optional - include margin and padding
     if (params.honorMarginPadding) {
@@ -34,8 +34,8 @@ export function collectStyles (element, params) {
       targetStyles.push('color')
     }
 
-    for (let i = 0; i < style.length; i++) {
-      for (let s = 0; s < targetStyle.length; s++) {
+    for (var i = 0; i < style.length; i++) {
+      for (var s = 0; s < targetStyle.length; s++) {
         if (style[i].indexOf(targetStyles[s]) !== -1 || style[i].indexOf(targetStyle[s]) === 0) {
           elementStyle += style[i] + ':' + style.getPropertyValue(style[i]) + ';'
         }
@@ -44,7 +44,7 @@ export function collectStyles (element, params) {
   } else if (element.currentStyle) { // IE
     style = element.currentStyle
 
-    for (let name in style) {
+    for (var name in style) {
       if (style.indexOf('border') !== -1 && style.indexOf('color') !== -1) {
         elementStyle += name + ':' + style[name] + ';'
       }
@@ -58,25 +58,25 @@ export function collectStyles (element, params) {
 }
 
 export function loopNodesCollectStyles (elements, params) {
-  for (let n = 0; n < elements.length; n++) {
-    let currentElement = elements[n]
+  for (var n = 0; n < elements.length; n++) {
+    var currentElement = elements[n]
 
     // Form Printing - check if is element Input
-    let tag = currentElement.tagName
+    var tag = currentElement.tagName
     if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') {
       // Save style to variable
-      let textStyle = collectStyles(currentElement, params)
+      var textStyle = collectStyles(currentElement, params)
 
       // Remove INPUT element and insert a text node
-      let parent = currentElement.parentNode
+      var parent = currentElement.parentNode
 
       // Get text value
-      let textNode = tag === 'SELECT'
+      var textNode = tag === 'SELECT'
                 ? document.createTextNode(currentElement.options[currentElement.selectedIndex].text)
                 : document.createTextNode(currentElement.value)
 
       // Create text element
-      let textElement = document.createElement('div')
+      var textElement = document.createElement('div')
       textElement.appendChild(textNode)
 
       // Add style to text
@@ -93,7 +93,7 @@ export function loopNodesCollectStyles (elements, params) {
     }
 
     // Check if more elements in tree
-    let children = currentElement.children
+    var children = currentElement.children
 
     if (children && children.length) {
       loopNodesCollectStyles(children, params)
@@ -103,10 +103,10 @@ export function loopNodesCollectStyles (elements, params) {
 
 export function addHeader (printElement, header) {
   // Create header element
-  let headerElement = document.createElement('h1')
+  var headerElement = document.createElement('h1')
 
   // Create header text node
-  let headerNode = document.createTextNode(header)
+  var headerNode = document.createTextNode(header)
 
   // Build and style
   headerElement.appendChild(headerNode)

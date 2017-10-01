@@ -7,11 +7,11 @@ import Html from './html'
 import Image from './image'
 import Json from './json'
 
-let printTypes = ['pdf', 'html', 'image', 'json']
+var printTypes = ['pdf', 'html', 'image', 'json']
 
 export default {
   init () {
-    let params = {
+    var params = {
       printable: null,
       type: 'pdf',
       header: null,
@@ -29,7 +29,7 @@ export default {
     }
 
     // Check if a printable document or object was supplied
-    let args = arguments[0]
+    var args = arguments[0]
     if (args === undefined) {
       throw new Error('printJS expects at least 1 attribute.')
     }
@@ -71,14 +71,14 @@ export default {
     }
 
     // To prevent duplication and issues, remove printFrame from the DOM, if it exists
-    let usedFrame = document.getElementById(params.frameId)
+    var usedFrame = document.getElementById(params.frameId)
 
     if (usedFrame) {
       usedFrame.parentNode.removeChild(usedFrame)
     }
 
     // Create a new iframe or embed element (IE prints blank pdf's if we use iframe)
-    let printFrame
+    var printFrame
 
     if (Browser.isIE() && params.type === 'pdf') {
       // Create embed element
@@ -109,7 +109,7 @@ export default {
         // Check browser support for pdf and if not supported we will just open the pdf file instead
         if (Browser.isFirefox() || Browser.isIE() || Browser.isEdge()) {
           console.log('PrintJS currently doesn\'t support PDF printing in Firefox, Internet Explorer and Edge.')
-          let win = window.open(params.printable, '_blank')
+          var win = window.open(params.printable, '_blank')
           win.focus()
           // Make sure there is no loading modal opened
           if (params.showModal) Modal.close()

@@ -7,7 +7,7 @@ const Print = {
     document.getElementsByTagName('body')[0].appendChild(printFrame)
 
     // Get iframe element
-    let iframeElement = document.getElementById(params.frameId)
+    var iframeElement = document.getElementById(params.frameId)
 
     // If printing pdf in IE
     if (Browser.isIE() && params.type === 'pdf') {
@@ -19,7 +19,7 @@ const Print = {
           finishPrint(iframeElement, params)
         } else {
           // Get iframe element document
-          let printDocument = (iframeElement.contentWindow || iframeElement.contentDocument)
+          var printDocument = (iframeElement.contentWindow || iframeElement.contentDocument)
           if (printDocument.document) printDocument = printDocument.document
 
           // Inject printable html into iframe body
